@@ -18,15 +18,15 @@ public class CsvLineParsrTests
         Assert.NotNull(machineDataItems);
         Assert.Single(machineDataItems);
         Assert.Equal("Cappuccino", machineDataItems[0].CoffeeType);
-        Assert.Equal(new DateTime(2022,10,27,8,6,4), machineDataItems[0].CreatedAt);
-    
+        Assert.Equal(new DateTime(2022, 10, 27, 8, 6, 4), machineDataItems[0].CreatedAt);
+
     }
 
     [Fact]
     public void ShouldSkipEmptyLines()
     {
         //Arrange
-        string[] csvLines = new[] { "" ,"   "};
+        string[] csvLines = new[] { "", "   " };
 
         //Act
         var machineDataItems = CsvLineParser.Parse(csvLines);
@@ -34,5 +34,15 @@ public class CsvLineParsrTests
         //Assert
         Assert.NotNull(machineDataItems);
         Assert.Empty(machineDataItems);
+    }
+
+    [Fact]
+    public void ShouldThrowExceptionForInvalidLine()
+    {
+        //Arrange
+        string[] csvLines = new[] { "Cappuccino" };
+
+        //Act
+        Assert.Throws<Exception>( ()=> CsvLineParser.Parse(csvLines));
     }
 }
