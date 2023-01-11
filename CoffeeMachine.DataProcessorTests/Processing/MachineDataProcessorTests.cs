@@ -35,6 +35,31 @@ public class MachineDataProcessorTests
         Assert.Equal("Espresso", item.CoffeeType);
         Assert.Equal(1, item.count);
     }
+
+    [Fact]
+    public void ShouldClearPreviousCoffeeCount()
+    {
+        //Arrange
+        var coffeeCountStore = new FakeCoffeeCountStore();
+        var machineDataProcessor = new MachineDataProcessor(coffeeCountStore);
+        var items = new[]
+        {
+          new MachineDataItem("Cappuccino",new DateTime(2022,10,27,8,0,0))
+        };
+
+        //Act
+        machineDataProcessor.ProcessItems(items);
+        machineDataProcessor.ProcessItems(items);
+
+        //Assert
+        Assert.Equal(2, coffeeCountStore.SavedItems.Count);
+        foreach ( var item in coffeeCountStore.SavedItems)
+        {
+            Assert.Equal("Cappuccino", item.CoffeeType);
+            Assert.Equal(1, item.count);
+        }
+    }
+    
 }
 
 
