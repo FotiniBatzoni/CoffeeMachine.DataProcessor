@@ -8,12 +8,20 @@ namespace WiredBrainCoffee.DataProcessor.Processing;
 
 public class MachineDataProcessorTests
 {
+    private readonly FakeCoffeeCountStore _coffeeCountStore;
+    private readonly MachineDataProcessor _machineDataProcessor;
+
+    public MachineDataProcessorTests()
+    {
+        //Like Before All in Jest
+        _coffeeCountStore = new FakeCoffeeCountStore();
+        _machineDataProcessor = new MachineDataProcessor(_coffeeCountStore);
+    }
+
     [Fact]
     public void ShouldSaveCountPerCoffeeType()
     {
         //Arrange
-        var coffeeCountStore = new FakeCoffeeCountStore();
-        var machineDataProcessor = new MachineDataProcessor(coffeeCountStore);
         var items = new[]
         {
           new MachineDataItem("Cappuccino",new DateTime(2022,10,27,8,0,0)),
@@ -40,8 +48,6 @@ public class MachineDataProcessorTests
     public void ShouldClearPreviousCoffeeCount()
     {
         //Arrange
-        var coffeeCountStore = new FakeCoffeeCountStore();
-        var machineDataProcessor = new MachineDataProcessor(coffeeCountStore);
         var items = new[]
         {
           new MachineDataItem("Cappuccino",new DateTime(2022,10,27,8,0,0))
