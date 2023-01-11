@@ -13,7 +13,7 @@ string[] csvLines = File.ReadAllLines(fileName);
 
 MachineDataItem[] machineDataItems = CsvLineParser.Parse(csvLines);
 
-var machineDataProcessor = new MachineDataProcessor(new ConsoleCoffeCountStore());
+var machineDataProcessor = new MachineDataProcessor(new ConsoleCoffeeCountStore());
 machineDataProcessor.ProcessItems(machineDataItems);
 
 Console.WriteLine();

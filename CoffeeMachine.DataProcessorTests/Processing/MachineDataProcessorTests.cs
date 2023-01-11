@@ -30,16 +30,16 @@ public class MachineDataProcessorTests : IDisposable
         };
 
         //Act
-        machineDataProcessor.ProcessItems(items);
+        _machineDataProcessor.ProcessItems(items);
 
         //Assert
-        Assert.Equal(2, coffeeCountStore.SavedItems.Count);
+        Assert.Equal(2, _coffeeCountStore.SavedItems.Count);
 
-        var item = coffeeCountStore.SavedItems[0];
+        var item = _coffeeCountStore.SavedItems[0];
         Assert.Equal("Cappuccino", item.CoffeeType);
         Assert.Equal(2, item.count);
 
-        item = coffeeCountStore.SavedItems[1];
+        item = _coffeeCountStore.SavedItems[1];
         Assert.Equal("Espresso", item.CoffeeType);
         Assert.Equal(1, item.count);
     }
@@ -54,12 +54,12 @@ public class MachineDataProcessorTests : IDisposable
         };
 
         //Act
-        machineDataProcessor.ProcessItems(items);
-        machineDataProcessor.ProcessItems(items);
+        _machineDataProcessor.ProcessItems(items);
+        _machineDataProcessor.ProcessItems(items);
 
         //Assert
-        Assert.Equal(2, coffeeCountStore.SavedItems.Count);
-        foreach ( var item in coffeeCountStore.SavedItems)
+        Assert.Equal(2, _coffeeCountStore.SavedItems.Count);
+        foreach ( var item in _coffeeCountStore.SavedItems)
         {
             Assert.Equal("Cappuccino", item.CoffeeType);
             Assert.Equal(1, item.count);
@@ -73,7 +73,7 @@ public class MachineDataProcessorTests : IDisposable
 }
 
 
-public class FakeCoffeeCountStore : ICoffeCountStore
+public class FakeCoffeeCountStore : ICoffeeCountStore
 {
     public List<CoffeeCountItem> SavedItems { get; } = new();
 

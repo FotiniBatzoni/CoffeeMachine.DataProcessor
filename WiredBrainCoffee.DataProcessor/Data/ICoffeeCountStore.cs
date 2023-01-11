@@ -2,7 +2,7 @@
 
 namespace WiredBrainCoffee.DataProcessor.Data
 {
-    public  interface ICoffeCountStore
+    public  interface ICoffeeCountStore
     {
         void Save(CoffeeCountItem item);
     }

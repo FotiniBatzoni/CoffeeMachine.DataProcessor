@@ -6,9 +6,9 @@ namespace WiredBrainCoffee.DataProcessor.Processing
     public class MachineDataProcessor
     {
         private readonly Dictionary<string, int> _countPerCoffeeType = new();
-        private readonly ICoffeCountStore _coffeeCountStore;
+        private readonly ICoffeeCountStore _coffeeCountStore;
 
-        public MachineDataProcessor(ICoffeCountStore coffeCountStore)
+        public MachineDataProcessor(ICoffeeCountStore coffeCountStore)
         {
             _coffeeCountStore = coffeCountStore;
         }
