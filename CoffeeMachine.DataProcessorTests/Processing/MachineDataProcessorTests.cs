@@ -6,7 +6,7 @@ using WiredBrainCoffee.DataProcessor.Model;
 
 namespace WiredBrainCoffee.DataProcessor.Processing;
 
-public class MachineDataProcessorTests
+public class MachineDataProcessorTests : IDisposable
 {
     private readonly FakeCoffeeCountStore _coffeeCountStore;
     private readonly MachineDataProcessor _machineDataProcessor;
@@ -65,7 +65,11 @@ public class MachineDataProcessorTests
             Assert.Equal(1, item.count);
         }
     }
-    
+
+    public void Dispose()
+    {
+      //This runs after every test
+    }
 }
 
 
